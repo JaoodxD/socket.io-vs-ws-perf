@@ -1,6 +1,6 @@
 const { WebSocketServer } = require('ws')
 const hrtime = process.hrtime.bigint
-const diff = (ts1, ts2) => (Number(ts2 - ts1) / 1e3) | 0
+const diff = (ts1, ts2) => (Number(ts2 - ts1) / 1e6) | 0
 
 const server = new WebSocketServer({
   port: 8080,
@@ -24,7 +24,7 @@ server.on('connection', (conn, req) => {
     pongs.push(time)
     diffs.push(diff(pings[pings.length - 1], time))
     pingCount++
-    if (pingCount < 50_000) {
+    if (pingCount < 1_000) {
       conn.ping()
       pings.push(hrtime())
     } else {

@@ -1,6 +1,6 @@
 const { Server } = require('socket.io')
 const hrtime = process.hrtime.bigint
-const diff = (ts1, ts2) => (Number(ts2 - ts1) / 1e3) | 0
+const diff = (ts1, ts2) => (Number(ts2 - ts1) / 1e6) | 0
 
 const io = new Server()
 
@@ -20,7 +20,7 @@ io.on('connection', socket => {
     pongs.push(time)
     diffs.push(diff(pings[pings.length - 1], time))
     pingCount++
-    if (pingCount < 50_000) {
+    if (pingCount < 1_000) {
       pings.push(hrtime())
       socket.emit('custom_ping')
     } else {
