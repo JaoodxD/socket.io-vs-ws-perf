@@ -7,14 +7,9 @@ const server = new WebSocketServer({
   perMessageDeflate: false
 })
 
-let pingCount = 0
-let pings = []
-let pongs = []
-let diffs = []
-
 server.on('connection', (conn, req) => {
   console.log('connected')
-  pingCount = 0
+  let pingCount = 0
   let pings = []
   let pongs = []
   let diffs = []

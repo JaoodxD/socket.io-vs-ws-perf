@@ -4,16 +4,12 @@ const diff = (ts1, ts2) => (Number(ts2 - ts1) / 1e6) | 0
 
 const io = new Server()
 
-let pingCount = 0
-let pings = []
-let pongs = []
-let diffs = []
 io.on('connection', socket => {
   console.log('a user connected')
-  pingCount = 0
-  pings = []
-  pongs = []
-  diffs = []
+  let pingCount = 0
+  let pings = []
+  let pongs = []
+  let diffs = []
 
   socket.on('custom_pong', () => {
     const time = hrtime()
