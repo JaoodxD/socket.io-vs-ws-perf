@@ -8,4 +8,5 @@ for (let i = 1; i <= concurrency; i++) {
   const ws = new WebSocket(`ws://${SERVER_URL}:8080`)
 
   ws.on('close', () => console.timeEnd('connect ' + i))
+  ws.on('error', console.error)
 }
