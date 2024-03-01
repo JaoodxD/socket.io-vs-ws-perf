@@ -14,4 +14,5 @@ for (let i = 1; i <= concurrency; i++) {
     socket.emit('custom_pong')
   })
   socket.io.on('close', () => console.timeEnd('connect ' + i))
+  socket.io.on('error', console.error)
 }
