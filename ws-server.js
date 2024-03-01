@@ -23,7 +23,6 @@ server.on('connection', (conn, req) => {
       conn.ping()
       pings.push(hrtime())
     } else {
-      console.timeEnd('ping-pong')
       conn.close()
       // console.table(
       //   pings.map((ms, n) => ({ ping: ms, pong: pongs[n], diff: diffs[n] }))
@@ -33,7 +32,6 @@ server.on('connection', (conn, req) => {
       console.log(sum, avg)
     }
   })
-  console.time('ping-pong')
   pings.push(hrtime())
   conn.ping()
 })

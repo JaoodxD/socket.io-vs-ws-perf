@@ -20,7 +20,6 @@ io.on('connection', socket => {
       pings.push(hrtime())
       socket.emit('custom_ping')
     } else {
-      console.timeEnd('ping-pong')
       socket.disconnect()
       // console.table(pings.map((ms, n) => ({ ping: ms, pong: pongs[n], diff: diffs[n] })))
       const sum = diffs.reduce((acc, n) => acc + n, 0)
@@ -28,7 +27,6 @@ io.on('connection', socket => {
       console.log(sum, avg)
     }
   })
-  console.time('ping-pong')
   pings.push(hrtime())
   socket.emit('custom_ping')
 })
