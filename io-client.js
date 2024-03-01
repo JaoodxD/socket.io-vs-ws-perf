@@ -6,6 +6,7 @@ const concurrency = process.argv[3] || 1
 for (let i = 1; i <= concurrency; i++) {
   console.time('connect ' + i)
   const socket = io(`ws://${SERVER_URL}:3000`, {
+    transports: ['websocket'],
     forceNew: true
   })
 
