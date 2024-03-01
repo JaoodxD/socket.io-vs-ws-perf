@@ -10,28 +10,28 @@ const server = new WebSocketServer({
 server.on('connection', (conn, req) => {
   console.log('connected')
   let pingCount = 0
-  let pings = []
-  let pongs = []
-  let diffs = []
+  // let pings = []
+  // let pongs = []
+  // let diffs = []
 
   conn.on('pong', () => {
-    const time = hrtime()
-    pongs.push(time)
-    diffs.push(diff(pings[pings.length - 1], time))
+    // const time = hrtime()
+    // pongs.push(time)
+    // diffs.push(diff(pings[pings.length - 1], time))
     pingCount++
     if (pingCount < 1_000) {
       conn.ping()
-      pings.push(hrtime())
+      // pings.push(hrtime())
     } else {
       conn.close()
       // console.table(
       //   pings.map((ms, n) => ({ ping: ms, pong: pongs[n], diff: diffs[n] }))
       // )
-      const sum = diffs.reduce((acc, n) => acc + n, 0)
-      const avg = sum / diffs.length
-      console.log(sum, avg)
+      // const sum = diffs.reduce((acc, n) => acc + n, 0)
+      // const avg = sum / diffs.length
+      // console.log(sum, avg)
     }
   })
-  pings.push(hrtime())
+  // pings.push(hrtime())
   conn.ping()
 })
